@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { Button, Center, Select } from "@mantine/core";
+import { Button, Center, Select, Title } from "@mantine/core";
 import ExcelFileInput from "./ExcelFileInput";
 import TemplateFileInput from "./TemplateFileInput";
 import GenerateButton from "./GenerateButton";
@@ -10,19 +10,17 @@ function App() {
   const [state, dispatch] = useReducer(reducer, {});
   return (
     <Center
-      style={{
+      sx={{
         width: "min(100%, 400px)",
         padding: "1rem",
         display: "grid",
         marginInline: "auto",
-        "> button": {
-          paddingTop: "1rem",
-        },
       }}
     >
+      <Title> Excel Docx Templater </Title>
       <ExcelFileInput dispatch={dispatch} />
       {
-        !state?.workbook?.SheetNames && (
+        state?.workbook?.SheetNames && (
           <Select
             label="Select Sheet to generate template from"
             placeholder="Sheet Names"
